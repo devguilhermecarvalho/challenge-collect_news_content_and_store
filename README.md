@@ -1,1 +1,1 @@
-# challenge-collect_news_content_and_store
+# Challenge - News Content Collect and Store
