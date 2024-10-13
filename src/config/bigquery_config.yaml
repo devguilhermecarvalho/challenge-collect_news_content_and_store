@@ -1,3 +1,4 @@
-project_id: seu-projeto-id
-dataset_id: seu-dataset-id
-table_id: sua-tabela-id
+project_id: "news-collect-and-store"
+dataset_id: "scraping_results"
+table_id: "the_guardian_scraped_data"
+credentials_path: "C:/Users/Guilherme/Documents/credentials/news-collect-and-store-22be09d2b3f9.json"

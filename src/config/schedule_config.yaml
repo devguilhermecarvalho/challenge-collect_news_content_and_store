@@ -1,3 +1,0 @@
-schedule:
-  enabled: true
-  cron_expression: "0 6 * * *"
