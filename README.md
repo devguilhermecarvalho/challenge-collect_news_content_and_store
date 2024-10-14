@@ -31,22 +31,22 @@ In this project, I was challenged to develop a complete application that scrapes
 
 ## How to Run the Project
 
-1. Create a Google Cloud Project
-   In google cloud console, create a project called: `news-collect-project` or modify the project name in the **config.yaml** files
+1. Create a **Google Cloud Project**:
+   * In google cloud console, create a project called: `news-collect-project` or modify the project name in the **config.yaml** files
 2. Create a **Service Account** and **Add BigQuery Admin permission**
 3. Create a service account key
 4. Save your credential `.json` in the `./credentials/` folder and or change the file name in both the Dockerfiles and the config.yaml files.
-5. Build the Docker Image
+5. Build the Docker Image:
 
-In the project’s root directory, run:
+* In the project’s root directory, run:
 
 `docker-compose build`
 
-7. Start the Services
+* Start the Services
 
 `docker-compose up`
 
-8. Access the API
+* Access the API
 
 `http://localhost:8000/api/articles`
 
@@ -57,5 +57,7 @@ In the project’s root directory, run:
 For more information or questions, please contact:
 
 Name: Guilherme Carvalho
+
 Email: guilhermerdcarvalho@gmail.com
+
 LinkedIn: [https://www.linkedin.com/in/devguilhermecarvalho/](https://www.linkedin.com/in/devguilhermecarvalho/)
