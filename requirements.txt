@@ -2,7 +2,7 @@ db-dtypes
 fastapi
 uvicorn[standard]
 readability
-readability-lxmld
+readability-lxml
 aiohttp==3.10.10
 google-cloud-bigquery==3.26.0
 google-cloud-bigquery-storage==2.26.0
