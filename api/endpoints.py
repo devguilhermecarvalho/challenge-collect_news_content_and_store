@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from google.cloud import bigquery
 from api.config import get_bigquery_client
 
 router = APIRouter()

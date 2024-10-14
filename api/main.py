@@ -7,4 +7,4 @@ app.include_router(router, prefix="/api")
 
 @app.get("/")
 def read_root():
-    return {"message": "API para consulta de artigos do BigQuery"}
+    return {"message": "API for querying BigQuery articles"}

@@ -29,14 +29,14 @@ class BigQueryProcessor:
     def ensure_table_exists(self):
         table_ref = self.client.dataset(self.dataset_id).table(self.table_id)
         try:
-            self.client.get_table(table_ref)  # Tenta obter a tabela
-            print(f"Tabela {table_ref} já existe.")
+            self.client.get_table(table_ref)
+            print(f"Connected to BigQuery: {table_ref}")
         except NotFound:
-            print(f"Tabela {table_ref} não encontrada. Criando tabela...")
+            print(f"The table {table_ref} not found. Creating table...")
             schema = self.get_table_schema()
             table = bigquery.Table(table_ref, schema=schema)
             self.client.create_table(table)
-            print(f"Tabela {table_ref} criada com sucesso.")
+            print(f"The table {table_ref} successfully created.")
 
     def get_existing_articles(self):
         table_ref = f"{self.project_id}.{self.dataset_id}.{self.table_id}"
@@ -47,13 +47,13 @@ class BigQueryProcessor:
 
     def process(self, data: pd.DataFrame):
         if data is None or data.empty:
-            print.warning("Nenhum dado foi recebido para processamento.")
+            print("No data was received for processing.")
             return None
 
         df = data.copy()
 
         if df.empty:
-            print.warning("O DataFrame está vazio. Nenhum dado para enviar ao BigQuery.")
+            print("The DataFrame is empty. No data to send to BigQuery.")
             return None
 
         self.ensure_table_exists()
@@ -63,9 +63,13 @@ class BigQueryProcessor:
         if not existing_articles.empty:
             df = df[~df['article_url'].isin(existing_articles['article_url'])]
 
+        print(f"Existing articles on BigQuery: {len(existing_articles)}")
+
         if df.empty:
-            print("Nenhum novo artigo para inserir.")
+            print("No new articles found for insertion.")
             return None
+
+        print(f"New articles to be inserted: {len(df)}")
 
         schema = self.get_table_schema()
 
@@ -79,8 +83,8 @@ class BigQueryProcessor:
         try:
             job = self.client.load_table_from_dataframe(df, table_ref, job_config=job_config)
             job.result()
-            print(f"Inserção concluída na tabela {table_ref}")
+            print(f"Inserted data into the table successfully. {table_ref}")
             return table_ref
         except Exception as e:
-            print(f"Erro ao inserir dados no BigQuery: {e}")
+            print(f"Error inserting data into BigQuery: {e}")
             return None
