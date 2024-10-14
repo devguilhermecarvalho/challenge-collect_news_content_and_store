@@ -25,6 +25,17 @@ class BigQueryProcessor:
             bigquery.SchemaField("section", "STRING")
         ]
         return schema
+    
+    def ensure_dataset_exists(self):
+        dataset_ref = self.client.dataset(self.dataset_id)
+        try:
+            self.client.get_dataset(dataset_ref)
+            print(f"Connected to BigQuery dataset: {self.dataset_id}")
+        except NotFound:
+            print(f"The dataset {self.dataset_id} not found. Creating dataset...")
+            dataset = bigquery.Dataset(dataset_ref)
+            self.client.create_dataset(dataset)
+            print(f"The dataset {self.dataset_id} successfully created.")
 
     def ensure_table_exists(self):
         table_ref = self.client.dataset(self.dataset_id).table(self.table_id)

@@ -9,8 +9,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Expor a porta onde o FastAPI será executado
 EXPOSE 8000
 
-# Comando para rodar o servidor da aplicação FastAPI
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["bash", "-c", "python main.py && uvicorn api.main:app --host 0.0.0.0 --port 8000"]
