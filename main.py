@@ -1,5 +1,3 @@
-# main
-
 import asyncio
 from src.datasources.factory import ScraperFactory
 from src.processors.processor_factory import ProcessorFactory

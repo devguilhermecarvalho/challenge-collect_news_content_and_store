@@ -1,5 +1,3 @@
-# src/processors/the_guardian_processor.py
-
 import pandas as pd
 import os
 from datetime import datetime
@@ -26,6 +24,7 @@ class TheGuardianProcessor:
             content = str(row['content']).strip()
             if not subtitle or not content:
                 return row
+            # Remove the first occurrence of the subtitle within the content
             row['content'] = content.replace(subtitle, '', 1).strip()
             return row
         return df.apply(clean_row, axis=1)

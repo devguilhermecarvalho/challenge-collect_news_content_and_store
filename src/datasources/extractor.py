@@ -13,6 +13,7 @@ class Extractor(ABC):
 
     @abstractmethod
     async def extract(self):
+        # Defines a structure that a subclass must have.
         pass
 
     async def close(self):

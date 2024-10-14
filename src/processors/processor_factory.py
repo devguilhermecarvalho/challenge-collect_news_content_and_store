@@ -1,5 +1,3 @@
-# src/processors/processor_factory.py
-
 from src.processors.bigquery_processor import BigQueryProcessor
 import yaml
 

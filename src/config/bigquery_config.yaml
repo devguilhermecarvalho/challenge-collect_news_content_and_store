@@ -1,4 +1,4 @@
 project_id: "news-collect-and-store"
 dataset_id: "scraping_results"
-table_id: "the_guardian_scraped_data"
+table_id: "raw_the_guardian_news"
 credentials_path: "C:/Users/Guilherme/Documents/credentials/news-collect-and-store-22be09d2b3f9.json"

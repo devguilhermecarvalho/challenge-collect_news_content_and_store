@@ -33,63 +33,77 @@ class TheGuardianScraper(Extractor):
             return data
         finally:
             await self.close()
-#
+    
+    # Scraping Analysis
     async def parse(self, html_content: str):
         soup = BeautifulSoup(html_content, "html.parser")
         sections = soup.find_all('section')
         articles_info = []
 
+        # Section informations
         for section in sections:
             section_title = section.get("id")
             if not section_title:
                 continue
-
+            
+            # LI elements
             list_items = section.find_all('li')
             for li in list_items:
+                # Article links elements
                 article_link = li.find('a', href=True)
                 href = article_link.get('href') if article_link else None
+
+                # Construct the article url to get your content
                 article_url = urljoin(self.base_url, href) if href else None
 
+                # Footer element where contains the date
                 footer = li.find('footer')
                 time_tag = footer.find('time') if footer else None
                 article_date = datetime.fromisoformat(
                     time_tag.get("datetime").replace('Z', '+00:00')
                 ).strftime("%Y-%m-%d") if time_tag else None
 
+                # Append basics informations
                 articles_info.append({
                     "section": section_title,
                     "article_url": article_url,
                     "article_date": article_date
                 })
 
+        # Get planned information and execute each task
         tasks = [self.get_article_data(article) for article in articles_info]
         detailed_articles = await asyncio.gather(*tasks)
 
+        # Merge basic and detailed informations
         for basic_info, detailed_info in zip(articles_info, detailed_articles):
             basic_info.update(detailed_info)
 
+        # Return the merged data
         return articles_info
 
     async def get_article_data(self, article):
         url = article.get("article_url")
         if not url:
-            return {"title": None, "subtitle": None, "content": None, "author": None}
+            return {"title": None, "content": None, "author": None}
         
+        # Get the html content
         html_content = await self.fetch(url)
 
-        # Usando Readability para extrair o conteúdo principal
+        # Readability to extract main content and article title
         doc = Document(html_content)
         title = doc.title()
         content = doc.summary()
 
+        # Create a soup object to extract the author
         soup = BeautifulSoup(html_content, "html.parser")
         author_tag = soup.find('a', rel='author')
         author = author_tag.get_text(strip=True) if author_tag else None
 
         content_soup = BeautifulSoup(content, "html.parser")
+        # Join the text of all paragraphs
         content_text = ' '.join([p.get_text(strip=True) for p in content_soup.find_all('p')])
 
-        return {"title": title, "subtitle": None, "content": content_text, "author": author}
+        return {"title": title, "content": content_text, "author": author}
     
     async def close(self):
         if not self.session.closed:
