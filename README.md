@@ -2,7 +2,7 @@
 
 In this project, I was challenged to develop a complete application that scrapes articles from The Guardian's website, processes and stores the data in Google BigQuery, and provides an API built with FastAPI for querying the collected data.
 
-* **YouTube**: video of the project running - [https://www.youtube.com/watch?v=90E-riHbVtk]()
+* **YouTube**: video of the project running - [https://www.youtube.com/watch?v=90E-riHbVtk](https://www.youtube.com/watch?v=90E-riHbVtk)
 
 ## The key concepts and principles applied include:
 
@@ -53,4 +53,4 @@ For more information or questions, please contact:
 
 Name: Guilherme Carvalho
 Email: guilhermerdcarvalho@gmail.com
-LinkedIn: [https://www.linkedin.com/in/devguilhermecarvalho/]()
+LinkedIn: [https://www.linkedin.com/in/devguilhermecarvalho/](https://www.linkedin.com/in/devguilhermecarvalho/)
