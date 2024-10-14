@@ -1,6 +1,8 @@
 db-dtypes
 fastapi
 uvicorn[standard]
+readability
+readability-lxmld
 aiohttp==3.10.10
 google-cloud-bigquery==3.26.0
 google-cloud-bigquery-storage==2.26.0
@@ -10,3 +12,4 @@ python-dotenv
 requests==2.32.3
 beautifulsoup4==4.10.0
 lxml==5.3.0
+lxml_html_clean
