@@ -2,6 +2,8 @@
 
 In this project, I was challenged to develop a complete application that scrapes articles from The Guardian's website, processes and stores the data in Google BigQuery, and provides an API built with FastAPI for querying the collected data.
 
+* **YouTube**: video of the project running - [https://www.youtube.com/watch?v=90E-riHbVtk]()
+
 ## The key concepts and principles applied include:
 
 - **Asynchronous Programming with asyncio and aiohttp** to efficiently handle I/O-bound operations during web scraping.
