@@ -104,3 +104,5 @@ w3lib==2.2.1
 wcwidth==0.2.13
 yarl==1.15.0
 zope.interface==7.1.0
+fastapi 
+uvicorn[standard]

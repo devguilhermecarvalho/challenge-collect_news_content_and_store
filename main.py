@@ -12,13 +12,10 @@ async def main():
     transformer = transformer_factory.get_transformer("the_guardian")
     processor = processor_factory.get_processor("bigquery")
 
-    # Extração dos dados
     extracted_data = await scraper.extract()
 
-    # Tratamento dos dados
     transformed_data = transformer.transform(extracted_data)
 
-    # Processamento e envio dos dados
     processor.process(transformed_data)
 
 if __name__ == "__main__":
